@@ -76,8 +76,75 @@ end
 x = 1:100
 f(t) = N₁_prob(1*10^-5,t)
 y = f.(x)
-plot(x,y,size =(200,200))
+plot(x,y,size =(200,200))=#
 #plot(x,y./sqrt.(x),size = (200,200))
 ##plot(x.^(1/8),y,size=(200,200))
 #plot(log10.(x),log10.(y),size =(200,200))
-=#
+
+x = 10^-5:0.04*10^-5:4*10^-5
+f1(t) = N₁_prob(t,1)
+f10(t) = N₁_prob(t,10)
+f100(t) = N₁_prob(t,100)
+f1000(t) = N₁_prob(t,1000)
+y1 = f1.(x)
+y10 = f10.(x)
+y100 = f100.(x)
+y1000 = f1000.(x)
+
+#=
+plot(x,y1,size = (500,500),label = "L = 1",linewidth = 3)
+plot!(x,y10,label="L = 10",linewidth = 3)
+plot!(x,y100, label="L = 100",linewidth = 3)
+plot!(x,y1000, label="L = 1000",linewidth = 3)
+xlabel!("v",labelsize = 15)
+ylabel!("X(v)",fontsize=15)
+title!("X(v) vs v")
+plot!(legendfontsize = 15,titlefontsize = 20,tickfontsize = 12,guidefontsize = 20)
+savefig("X_v.png")=#
+
+plot(x,1 ./ y1,size = (500,500),label = "L = 1",linewidth = 3)
+plot!(x,1 ./ y10,label="L = 10",linewidth = 3)
+plot!(x,1 ./ y100, label="L = 100",linewidth = 3)
+plot!(x,1 ./ y1000, label="L = 1000",linewidth = 3)
+xlabel!("v",labelsize = 15)
+ylabel!("X(v)^-1",fontsize=15)
+title!("X(v)^-1 vs v")
+plot!(legendfontsize = 15,titlefontsize = 20,tickfontsize = 12,guidefontsize = 20)
+savefig("X_v_inv.png")
+
+x = 10^-5:0.01*0.01:0.01
+f1(t) = N₁_prob(t,1)
+f10(t) = N₁_prob(t,10)
+f100(t) = N₁_prob(t,100)
+f1000(t) = N₁_prob(t,1000)
+y1 = f1.(x)
+y10 = f10.(x)
+y100 = f100.(x)
+y1000 = f1000.(x)
+plot(x,1 ./ y1,size = (500,500),label = "L = 1",linewidth = 3)
+plot!(x,1 ./ y10,label="L = 10",linewidth = 3)
+plot!(x,1 ./ y100, label="L = 100",linewidth = 3)
+plot!(x,1 ./ y1000, label="L = 1000",linewidth = 3)
+xlabel!("v",labelsize = 15)
+ylabel!("X(v)^-1",fontsize=15)
+title!("X(v)^-1 vs v")
+plot!(legendfontsize = 15,titlefontsize = 20,tickfontsize = 12,guidefontsize = 20)
+savefig("X_v_inv_2.png")
+
+
+x = 10^-5:0.01*10^-6:10^-5+10^-6
+f100(t) = N₁_prob(t,100)
+f1000(t) = N₁_prob(t,1000)
+y1 = f1.(x)
+y10 = f10.(x)
+y100 = f100.(x)
+y1000 = f1000.(x)
+plot(x,1 ./ y1,size = (500,500),label = "L = 1",linewidth = 3)
+plot!(x,1 ./ y10,label="L = 10",linewidth = 3)
+plot!(x,1 ./ y100, label="L = 100",linewidth = 3)
+plot!(x,1 ./ y1000, label="L = 1000",linewidth = 3)
+xlabel!("v",labelsize = 15)
+ylabel!("X(v)^-1",fontsize=15)
+title!("X(v)^-1 vs v")
+plot!(legendfontsize = 15,titlefontsize = 20,tickfontsize = 12,guidefontsize = 20)
+savefig("X_v_inv_3.png")
