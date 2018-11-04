@@ -91,16 +91,16 @@ y10 = f10.(x)
 y100 = f100.(x)
 y1000 = f1000.(x)
 
-#=
+
 plot(x,y1,size = (500,500),label = "L = 1",linewidth = 3)
 plot!(x,y10,label="L = 10",linewidth = 3)
 plot!(x,y100, label="L = 100",linewidth = 3)
 plot!(x,y1000, label="L = 1000",linewidth = 3)
 xlabel!("v",labelsize = 15)
-ylabel!("X(v)",fontsize=15)
-title!("X(v) vs v")
+ylabel!("N(v,L)",fontsize=15)
+title!("N(v,L) vs v")
 plot!(legendfontsize = 15,titlefontsize = 20,tickfontsize = 12,guidefontsize = 20)
-savefig("X_v.png")=#
+savefig("N_v.png")
 
 plot(x,1 ./ y1,size = (500,500),label = "L = 1",linewidth = 3)
 plot!(x,1 ./ y10,label="L = 10",linewidth = 3)
@@ -110,7 +110,7 @@ xlabel!("v",labelsize = 15)
 ylabel!("X(v)^-1",fontsize=15)
 title!("X(v)^-1 vs v")
 plot!(legendfontsize = 15,titlefontsize = 20,tickfontsize = 12,guidefontsize = 20)
-savefig("X_v_inv.png")
+savefig("N_v_inv.png")
 
 x = 10^-5:0.01*0.01:0.01
 f1(t) = N₁_prob(t,1)
@@ -132,7 +132,9 @@ plot!(legendfontsize = 15,titlefontsize = 20,tickfontsize = 12,guidefontsize = 2
 savefig("X_v_inv_2.png")
 
 
-x = 10^-5:0.01*10^-6:10^-5+10^-6
+x = 10^-5:0.5*10^-6:10^-5+10*10^-6
+f1(t) = N₁_prob(t,1)
+f10(t) = N₁_prob(t,10)
 f100(t) = N₁_prob(t,100)
 f1000(t) = N₁_prob(t,1000)
 y1 = f1.(x)
