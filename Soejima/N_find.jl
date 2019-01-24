@@ -51,6 +51,9 @@ function chunk_size(Length)
     return N₁_seq(v₁,Length)
 end
 
+"""
+Calculate the size of the first chunck by simulating the process once
+"""
 function N₁_seq(v₁,Length)
     n = 1
     while true
@@ -63,6 +66,9 @@ function N₁_seq(v₁,Length)
     end
 end
 
+"""
+Calculate the expected size of the first chunk by evaluating the summation series
+"""
 function N₁_prob(v,Length)
     N = 0
     curprod = 1
@@ -71,6 +77,18 @@ function N₁_prob(v,Length)
         curprod *= (1-L̃(1/v - m/Length))
     end
     return N
+end
+
+
+"""
+Calculate the average of N1_seq
+"""
+function N₁_average(v,Length)
+    g = 0
+    for i in 1:100
+        g += N₁_seq(v,Length)
+    end
+return g/100
 end
 
 #=
@@ -181,3 +199,14 @@ ylabel!(L"N(v,L)$^{-1}$",fontsize=15)
 title!(L"N(v,L)$^{-1}$ vs v")
 plot!(legendfontsize = 15,titlefontsize = 20,tickfontsize = 12,guidefontsize = 20)
 savefig("N_v_inv_4.png")
+
+
+f1_prob(v) = N₁_prob(v,1)
+f1_ave(v) = N₁_average(v,1)
+
+v = 10^-5:0.01:1+10^-5
+
+y1_prob = f1_prob.(v)
+y1_ave = f1_ave.(v)
+plot(v,y1_prob)
+plot!(v,y1_ave)
