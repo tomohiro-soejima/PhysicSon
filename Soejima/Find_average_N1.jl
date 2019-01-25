@@ -1,10 +1,9 @@
+module FindN1
+
 using LinearAlgebra
-using NLsolve
-using Roots
-using Plots
-using LaTeXStrings
 using QuadGK
-pyplot()
+
+export N1
 
 """
 The probability distribution for car velocity, defined in paper. v_min is the minimum velocity and n is the order of F(v), also defined in paper.
@@ -59,58 +58,4 @@ function N1(Length,n,v_min)
     return N1
 end
 
-@time N1_1 = N1(1,1,10^-5)
-@time N1_10 = N1(10,1,10^-5)
-@time N1_100 = N1(100,1,10^-5)
-@time N1_1000 = N1(1000,1,10^-5)
-
-println(N1_1)
-println(N1_10)
-println(N1_100)
-println(N1_1000)
-
-@time N1_1_2 = N1(1,2,10^-5)
-@time N1_10_2 = N1(10,2,10^-5)
-@time N1_100_2 = N1(100,2,10^-5)
-@time N1_1000_2 = N1(1000,2,10^-5)
-
-println(N1_1_2)
-println(N1_10_2)
-println(N1_100_2)
-println(N1_1000_2)
-
-@time N1_1_2 = N1(1,20,10^-5)
-@time N1_10_2 = N1(10,20,10^-5)
-@time N1_100_2 = N1(100,20,10^-5)
-@time N1_1000_2 = N1(1000,20,10^-5)
-
-println(N1_1_20)
-println(N1_10_20)
-println(N1_100_20)
-println(N1_1000_20)
-
-println("end")
-
-#=
-f1(t) = N₁_prob(t,1)
-f10(t) = N₁_prob(t,10)
-f100(t) = N₁_prob(t,100)
-f1000(t) = N₁_prob(t,1000)
-
-x = 10^-5:0.04*10^-5:4*10^-5
-y1 = f1.(x)
-y10 = f10.(x)
-y100 = f100.(x)
-y1000 = f1000.(x)
-
-
-plot(x,y1,size = (500,500),label = "L = 1",linewidth = 3)
-plot!(x,y10,label="L = 10",linewidth = 3)
-plot!(x,y100, label="L = 100",linewidth = 3)
-plot!(x,y1000, label="L = 1000",linewidth = 3)
-xlabel!("v",labelsize = 15)
-ylabel!("N(v,L)",fontsize=15)
-title!("N(v,L) vs v")
-plot!(legendfontsize = 15,titlefontsize = 20,tickfontsize = 12,guidefontsize = 20)
-savefig("N_v.png")
-=#
+end #for module
