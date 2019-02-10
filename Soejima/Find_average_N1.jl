@@ -9,7 +9,7 @@ export N1
 The probability distribution for car velocity, defined in paper. v_min is the minimum velocity and n is the order of F(v), also defined in paper.
 """
 function p(v,n::Int,vmin)
-    if vmin< v < 1+vmin
+    if vmin <= v <= 1+vmin
         return n*(v-vmin)^(n-1)
     else
         return 0
