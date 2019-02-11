@@ -3,13 +3,7 @@ using .FindN1
 include("./efficient_integral.jl")
 using .integrateN1
 
-#FindN1.N1(1,1,10^-1)
-#try1 = @time FindN1.N1(10,2,10^-3)
-integrateN1.integrate_N1(1,1,10^-1)
-integrateN1.integrate_N1_old(1,1,10^-1)
-try1 = @time integrateN1.integrate_N1(1000000,2,10^-3)
-try2, u_list, N_list = @time integrateN1.integrate_N1_old(1000000,2,10^-3)
-
-
-println(try1)
-println(try2)
+x = [integrateN1.integrate_N1(10^i,5,10^-1) for i in 2 : 9]
+y = [3.0/4*i*log(10) for i in 2 : 9]
+println(x)
+println(y)
